@@ -1,35 +1,21 @@
-<div>
-  <div>
-    @if (selected) {
-    <div *ngIf="selected">
-      <app-movie-detail [movie]="selectedMovie"></app-movie-detail>
+<div class="container mt-4">
+  <h2 class="mb-4">Movies</h2>
+  
+  <div class="row">
+    @for(movie of movies; track movie.id){
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <img [src]="movie.poster" class="card-img-top" [alt]="movie.titulo">
+        <div class="card-body">
+          <h5 class="card-title">{{ movie.titulo }}</h5>
+          <p class="mb-1"><strong>{{ movie.duracion_minutos }} min</strong></p>
+          <p class="mb-2">{{ movie.director }}</p>
+          <a href="/movie/{{movie.id}}" class="btn btn-primary btn-sm">
+            Detalles
+          </a>
+        </div>
+      </div>
     </div>
     }
-    <table>
-      <thead>
-        <tr>
-          <th>Titulo</th>
-          <th>Imagen</th>
-          <th>Duracion en minutos</th>
-          <th>Director</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for(movie of movies; track movie.id){
-        <tr (click)="onSelect(movie)">
-          <td>{{ movie.titulo }}</td>
-          <td>
-            <img
-              class="movie-img"
-              [src]="movie.poster"
-              alt="{{ movie.poster }}"
-            />
-          </td>
-          <td>{{ movie.duracion_minutos }} min</td>
-          <td>{{ movie.director }} </td>
-        </tr>
-        }
-      </tbody>
-    </table>
   </div>
 </div>
